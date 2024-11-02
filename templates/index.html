@@ -1,0 +1,57 @@
+{% extends  'base.html' %}
+{% block head %}
+<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HotelHarvest</title>
+{% endblock %}
+
+{% block body %}
+<body>
+    <div class="container">
+        <h1>HotelHarvest</h1>
+        <div class="form-container">
+            <h2>Enter Informations</h2>
+            <form action='/process' method='post'>
+                <label for="place-name">Place Name</label>
+                <input type="text" id="place-name" name="place-name" required>
+
+                <label for="pages">Pages</label>
+                <input type="number" min="1" max="100" id="pages" name="pages" min="1" required>
+
+                <button type="submit">Generate</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Question Mark Icon -->
+    <div class="help-icon" onclick="toggleModal()">
+        ?
+    </div>
+
+    <!-- Modal -->
+    <div id="instruction-modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="toggleModal()">&times;</span>
+            <h3>Instructions</h3>
+            <p>1. Enter the name of the place you want to scrape hotel data for.</p>
+            <p>2. Enter the number of pages you want to scrape.</p>
+            <p>3. Click "Generate" to start scraping.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleModal() {
+            const modal = document.getElementById("instruction-modal");
+            modal.style.display = modal.style.display === "flex" ? "none" : "flex";
+        }
+
+        // Close the modal when clicking outside of it
+        window.onclick = function(event) {
+            const modal = document.getElementById("instruction-modal");
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        };
+    </script>
+
+{% endblock %}
